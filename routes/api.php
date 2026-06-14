@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\ContatoController;
 use App\Http\Controllers\Api\TelefoneUtilController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\HomeController;
+use App\Http\Controllers\Api\ConfiguracaoController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CampanhaAdminController;
 use App\Http\Controllers\Admin\NoticiaAdminController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\Admin\ConfiguracaoAdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('home', [HomeController::class, 'index']);
+Route::get('configuracoes', [ConfiguracaoController::class, 'index']);
 Route::get('campanhas', [CampanhaController::class, 'index']);
 Route::get('campanhas/{slug}', [CampanhaController::class, 'show']);
 Route::get('noticias', [NoticiaController::class, 'index']);

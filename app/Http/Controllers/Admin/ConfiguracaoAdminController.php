@@ -15,6 +15,12 @@ class ConfiguracaoAdminController extends Controller
         'endereco',
         'horario_atendimento',
         'descricao',
+        'cidade_uf',
+        'disque_100_texto',
+        'emergencia_texto',
+        'facebook_url',
+        'instagram_url',
+        'youtube_url',
     ];
 
     public function index()
@@ -33,6 +39,12 @@ class ConfiguracaoAdminController extends Controller
             'endereco' => ['nullable', 'string', 'max:255'],
             'horario_atendimento' => ['nullable', 'string', 'max:150'],
             'descricao' => ['nullable', 'string', 'max:1000'],
+            'cidade_uf' => ['nullable', 'string', 'max:100'],
+            'disque_100_texto' => ['nullable', 'string', 'max:500'],
+            'emergencia_texto' => ['nullable', 'string', 'max:500'],
+            'facebook_url' => ['nullable', 'url', 'max:255'],
+            'instagram_url' => ['nullable', 'url', 'max:255'],
+            'youtube_url' => ['nullable', 'url', 'max:255'],
         ]);
 
         foreach ($dados as $chave => $valor) {

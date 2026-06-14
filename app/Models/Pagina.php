@@ -12,6 +12,9 @@ class Pagina extends Model
     protected $fillable = [
         'titulo',
         'slug',
+        'chamada',
+        'resumo',
+        'icone',
         'conteudo',
         'status'
     ];
