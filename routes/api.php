@@ -9,6 +9,8 @@ use App\Http\Controllers\Api\TelefoneUtilController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\ConfiguracaoController;
+use App\Http\Controllers\Api\PasswordController;
+use App\Http\Controllers\Api\VisitaController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CampanhaAdminController;
 use App\Http\Controllers\Admin\NoticiaAdminController;
@@ -29,9 +31,12 @@ Route::get('noticias/{slug}', [NoticiaController::class, 'show']);
 Route::get('paginas/{slug}', [PaginaController::class, 'show']);
 Route::get('telefones-uteis', [TelefoneUtilController::class, 'index']);
 Route::get('sugestoes-aprovadas', [SugestaoController::class, 'aprovadas']);
-Route::post('sugestoes', [SugestaoController::class, 'store'])->middleware('throttle:10,1');
-Route::post('contato', [ContatoController::class, 'store'])->middleware('throttle:10,1');
-Route::post('login', [AuthController::class, 'login'])->middleware('throttle:5,1');
+Route::post('sugestoes', [SugestaoController::class, 'store'])->middleware('throttle:sugestoes');
+Route::post('contato', [ContatoController::class, 'store'])->middleware('throttle:contato');
+Route::post('login', [AuthController::class, 'login'])->middleware('throttle:login');
+Route::post('esqueci-senha', [PasswordController::class, 'forgot'])->middleware('throttle:esqueci-senha');
+Route::post('redefinir-senha', [PasswordController::class, 'reset'])->middleware('throttle:redefinir-senha');
+Route::post('visitas', [VisitaController::class, 'store'])->middleware('throttle:visitas');
 
 Route::middleware(['auth:sanctum'])->prefix('admin')->group(function () {
     Route::get('usuario', [AuthController::class, 'usuario']);
@@ -52,5 +57,6 @@ Route::middleware(['auth:sanctum'])->prefix('admin')->group(function () {
     Route::delete('midias/{midia}', [MidiaAdminController::class, 'destroy']);
     Route::get('configuracoes', [ConfiguracaoAdminController::class, 'index']);
     Route::put('configuracoes', [ConfiguracaoAdminController::class, 'update']);
+    Route::put('senha', [PasswordController::class, 'change'])->middleware('throttle:alterar-senha');
     Route::post('logout', [AuthController::class, 'logout']);
 });
