@@ -18,7 +18,7 @@ API REST da Plataforma Conselho Tutelar, construída com Laravel 12.
 
 ```bash
 composer install
-copy .env.example .env
+cp .env.example .env
 php artisan key:generate
 php artisan storage:link
 php artisan migrate --seed
@@ -27,16 +27,11 @@ php artisan serve
 
 Configure o MySQL no `.env` antes das migrations. A API ficará disponível em `http://localhost:8000/api`.
 
-## Recuperação de senha
+## Produção
 
-Em desenvolvimento, `MAIL_MAILER=log` grava o link de redefinição em `storage/logs/laravel.log`.
-Para enviar e-mails reais, configure `MAIL_MAILER=smtp` e as variáveis `MAIL_HOST`, `MAIL_PORT`,
-`MAIL_USERNAME`, `MAIL_PASSWORD`, `MAIL_ENCRYPTION` e `MAIL_FROM_ADDRESS`.
-
-## Testes
-
-Os testes usam SQLite em memória. Com `pdo_sqlite` habilitado, execute:
-
-```bash
-php vendor/bin/phpunit
-```
+- Domínio da API: `https://guardianshipcouncil.x10.mx/`
+- Frontend autorizado no CORS: `https://siteconselhotutelar.vercel.app/`
+- Use `.env.production.example` como base para o ambiente de produção
+- O servidor precisa rodar PHP 8.2 ou superior, compatível com Laravel 12
+- Após configurar o servidor, execute `php artisan storage:link` para servir imagens públicas corretamente
+- O `APP_URL` precisa apontar para o domínio da API para gerar links de `storage` e URLs absolutas corretas
