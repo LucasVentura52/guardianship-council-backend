@@ -8,6 +8,9 @@ API REST da Plataforma Conselho Tutelar, construída com Laravel 12.
 - CRUD de campanhas, notícias, páginas e telefones úteis
 - Moderação de sugestões e mensagens
 - Upload e biblioteca de imagens
+- Recuperação e alteração segura de senha administrativa
+- Indicadores de acessos públicos e interações dos últimos sete dias
+- Proteção dos dados pessoais nas respostas públicas
 - Validação com Form Requests e respostas com API Resources
 - Seed com administrador e conteúdo demonstrativo
 
