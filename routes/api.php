@@ -21,9 +21,25 @@ use App\Http\Controllers\Admin\MensagemAdminController;
 use App\Http\Controllers\Admin\MidiaAdminController;
 use App\Http\Controllers\Admin\ConfiguracaoAdminController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 Route::get('home', [HomeController::class, 'index']);
 Route::get('configuracoes', [ConfiguracaoController::class, 'index']);
+Route::get('arquivos/{path}', function (string $path) {
+    if (str_contains($path, '..')) {
+        abort(404);
+    }
+
+    $disk = Storage::disk('public');
+
+    if (! $disk->exists($path)) {
+        abort(404);
+    }
+
+    return $disk->response($path, null, [
+        'Cache-Control' => 'public, max-age=31536000, immutable',
+    ]);
+})->where('path', '.*');
 Route::get('campanhas', [CampanhaController::class, 'index']);
 Route::get('campanhas/{slug}', [CampanhaController::class, 'show']);
 Route::get('noticias', [NoticiaController::class, 'index']);
