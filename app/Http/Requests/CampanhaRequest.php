@@ -33,4 +33,13 @@ class CampanhaRequest extends FormRequest
             'data_publicacao' => 'nullable|date'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'imagem.image' => 'Envie um arquivo de imagem válido.',
+            'imagem.max' => 'A imagem deve ter no máximo 5 MB.',
+            'imagem.uploaded' => 'A imagem não pôde ser enviada. Verifique o tamanho do arquivo e tente novamente.',
+        ];
+    }
 }
